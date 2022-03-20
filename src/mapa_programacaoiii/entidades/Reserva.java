@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Reserva {
     
-    private List<Hospede> list = new ArrayList<>();
+    private List<Hospede> listaHospedes = new ArrayList<>();
     private Suite suite;
     private int quantidadePessoas;
     private int quantidadeDias;
@@ -21,11 +21,11 @@ public class Reserva {
     }
 
     public List<Hospede> getList() {
-        return list;
+        return listaHospedes;
     }
 
     public void setList(List<Hospede> list) {
-        this.list = list;
+        this.listaHospedes = list;
     }
 
     public Suite getSuite() {
@@ -50,6 +50,28 @@ public class Reserva {
 
     public void setQuantidadeDias(int quantidadeDias) {
         this.quantidadeDias = quantidadeDias;
+    }
+    
+    public boolean verificarCapacidade(){
+        return suite.getCapacidade() > listaHospedes.size();
+    }
+    
+    public double calcularDiaria(){
+        double valorTotal = suite.getValorDiaria() * quantidadeDias;
+        return valorTotal - descontoConcedido(valorTotal);
+    }
+    
+    private double descontoConcedido(double valorTotal){
+        
+        final int PORCENTAGEM_DESCONTO = 10;
+        double totalDesconto = 0;
+        if(quantidadeDias > 7){
+            totalDesconto = PORCENTAGEM_DESCONTO / 100 * valorTotal;
+        }
+        else{
+            totalDesconto = 0;
+        }
+        return totalDesconto;
     }
         
 }
