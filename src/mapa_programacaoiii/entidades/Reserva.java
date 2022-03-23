@@ -10,31 +10,27 @@ public class Reserva {
     private int quantidadePessoas;
     private int quantidadeDias;
 
-    public Reserva(Suite suite, int quantidadePessoas, int quantidadeDias) {
+    public Reserva(Suite suite) {
         this.suite = suite;
-        
-        if(verificarCapacidade(quantidadePessoas) == true){
-            this.quantidadePessoas = quantidadePessoas;
-        }
-        else{
-            System.out.println("O numero de possoas excede a capacidade da suite!");
-        }
-        
-        this.quantidadeDias = quantidadeDias;
     }
 
-    public void AddListaHospede(Hospede hospede){
-        listaHospedes.add(hospede);
+    public void adicionarHospedeLista(Hospede hospede){
+        if(verificarCapacidade()){
+            listaHospedes.add(hospede);
+        }
+        else{
+            System.out.println("A reserva não pode alocar mais hóspedes do que a capacidade da suíte.");
+        }
     }
     
     public void removerHospedeLista(Hospede hospede){
         listaHospedes.remove(hospede);
     }
-    
-    public List<Hospede> getList() {
+
+    public List<Hospede> getListaHospedes() {
         return listaHospedes;
     }
-    
+      
     public Suite getSuite() {
         return suite;
     }
@@ -59,8 +55,8 @@ public class Reserva {
         this.quantidadeDias = quantidadeDias;
     }
     
-    public boolean verificarCapacidade(int quantidadePessoas){
-        return suite.getCapacidade() >= quantidadePessoas;
+    public boolean verificarCapacidade(){
+        return suite.getCapacidade() >= listaHospedes.size()+1;
     }
     
     public double calcularDiaria(){
