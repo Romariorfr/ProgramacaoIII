@@ -32,8 +32,9 @@ public class Mapa_programacaoIII {
            reserva.setQuantidadePessoas(reserva.getListaHospedes().size());
            
            //quantidade de dias da reserva
-           reserva.setQuantidadeDias(7);
-      
+           reserva.setQuantidadeDias(8);
+           
+           System.out.printf("Valor da reserva $%.2f\n",reserva.calcularDiaria());
     }
     
 }
