@@ -17,9 +17,18 @@ public class Reserva {
     public void adicionarHospedeLista(Hospede hospede){
         if(verificarCapacidade()){
             listaHospedes.add(hospede);
+            
+        }
+        else if(verificarCapacidade() == false && hospede.getIdade() <= 2){
+            System.out.println("---------------------------------------------------------------------");
+            System.out.println("Bebês até 2 anos não contam na capacidade da suíte.");
+            System.out.println("---------------------------------------------------------------------");
+            
         }
         else{
+            System.out.println("---------------------------------------------------------------------");
             System.out.println("A reserva não pode alocar mais hóspedes do que a capacidade da suíte.");
+            System.out.println("---------------------------------------------------------------------");
         }
     }
     
@@ -57,6 +66,7 @@ public class Reserva {
     
     public boolean verificarCapacidade(){
         return suite.getCapacidade() >= listaHospedes.size()+1;
+        
     }
     
     public double calcularDiaria(){
@@ -75,6 +85,15 @@ public class Reserva {
     
     private double valorTotal(){
         return suite.getValorDiaria() * quantidadeDias;
+    }
+    
+    public void labelDesconto(){
+        if(quantidadeDias > 7){
+            System.out.println("Com desconto de 10% para diarias acima de 7 dias.");
+        }
+        else{
+            System.out.println("Sem desconto.");
+        }
     }
         
 }
