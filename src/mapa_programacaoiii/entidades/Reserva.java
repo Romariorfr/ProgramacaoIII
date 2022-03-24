@@ -60,21 +60,18 @@ public class Reserva {
     }
     
     public double calcularDiaria(){
-        double valorTotal = suite.getValorDiaria() * quantidadeDias;
-        return valorTotal - descontoConcedido(valorTotal);
+        double valorTotal = 0;
+        if(quantidadeDias > 7){
+            valorTotal = suite.getValorDiaria() * quantidadeDias;
+            valorTotal = valorTotal - desconto(valorTotal);
+        }else{
+            valorTotal = suite.getValorDiaria() * quantidadeDias;
+        }
+        return valorTotal;
     }
     
-    private double descontoConcedido(double valorTotal){
-        
-        final int PORCENTAGEM_DESCONTO = 10;
-        double totalDesconto = 0;
-        if(quantidadeDias > 7){
-            totalDesconto = (PORCENTAGEM_DESCONTO / 100) * valorTotal;
-        }
-        else{
-            totalDesconto = 0;
-        }
-        return totalDesconto;
+    public double desconto(double valorTotal){
+       return 0.1 * valorTotal;
     }
         
 }

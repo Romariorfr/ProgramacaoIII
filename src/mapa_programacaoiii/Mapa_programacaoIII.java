@@ -35,6 +35,9 @@ public class Mapa_programacaoIII {
            reserva.setQuantidadeDias(8);
            
            System.out.printf("Valor da reserva $%.2f\n",reserva.calcularDiaria());
+          
+           
+           
     }
     
 }
